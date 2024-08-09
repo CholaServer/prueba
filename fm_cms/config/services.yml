@@ -1,0 +1,21 @@
+services:
+  _defaults:
+    public: true
+
+  fm.module.cms.repository.cms_category_extra_repository:
+    class: Flormoments\Module\Cms\Repository\CMSCategoryExtraRepository
+    factory: ['@doctrine.orm.entity_manager', getRepository]
+    arguments:
+      - Flormoments\Module\Cms\Entity\CMSCategoryExtra
+
+  fm.module.cms.repository.cms_page_extra_repository:
+    class: Flormoments\Module\Cms\Repository\CMSPageExtraRepository
+    factory: ['@doctrine.orm.entity_manager', getRepository]
+    arguments:
+      - Flormoments\Module\Cms\Entity\CMSPageExtra
+
+  fm.module.cms.repository.cms_repository:
+    class: Flormoments\Module\Cms\Repository\CMSRepository
+    arguments:
+      - '@doctrine.dbal.default_connection'
+      - '%database_prefix%'

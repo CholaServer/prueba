@@ -1,0 +1,12 @@
+{
+  "name": "flormoments/cms",
+  "autoload": {
+    "psr-4": {
+      "Flormoments\\Module\\Cms\\": "src/"
+    },
+    "type": "prestashop-module"
+  },
+  "config": {
+    "prepend-autoloader": false
+  }
+}

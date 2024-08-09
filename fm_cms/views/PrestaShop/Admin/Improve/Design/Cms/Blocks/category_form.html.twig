@@ -1,0 +1,106 @@
+{% import '@PrestaShop/Admin/macros.html.twig' as ps %}
+
+{% block category_form %}
+    {{ form_start(cmsPageCategoryForm) }}
+
+    <div class="card">
+        <div class="card-header">
+            {{ 'CMS Category'|trans({}, 'Admin.Design.Feature') }}
+        </div>
+        <div class="card-block row">
+            <div class="card-text">
+
+                {% set invalidCharactersForCatalogLabel = 'Invalid characters:'|trans({}, 'Admin.Notifications.Info') ~ '<>;=#{}' %}
+                {% set invalidCharactersForNameLabel = 'Invalid characters:'|trans({}, 'Admin.Notifications.Info') ~ '<>={}' %}
+
+                {{ ps.form_group_row(cmsPageCategoryForm.name, {}, {
+                    'label': 'Name'|trans({}, 'Admin.Global'),
+                    'help': invalidCharactersForCatalogLabel
+                }) }}
+
+                {{ ps.form_group_row(cmsPageCategoryForm.is_displayed, {}, {
+                    'label': 'Displayed'|trans({}, 'Admin.Global'),
+                }) }}
+
+                {{ ps.form_group_row(cmsPageCategoryForm.parent_category, {}, {
+                    'label': 'Parent category'|trans({}, 'Admin.Design.Feature'),
+                }) }}
+
+                {{ ps.form_group_row(cmsPageCategoryForm.description, {}, {
+                    'label': 'Description'|trans({}, 'Admin.Global'),
+                }) }}
+
+                {{ ps.form_group_row(cmsPageCategoryForm.meta_title, {}, {
+                    'label': 'Meta title'|trans({}, 'Admin.Global'),
+                    'help': invalidCharactersForNameLabel
+                }) }}
+
+                {{ ps.form_group_row(cmsPageCategoryForm.meta_description, {}, {
+                    'label': 'Meta description'|trans({}, 'Admin.Global'),
+                    'help': invalidCharactersForNameLabel
+                }) }}
+
+                {{ ps.form_group_row(cmsPageCategoryForm.meta_keywords, {}, {
+                    'label': 'Meta keywords'|trans({}, 'Admin.Global'),
+                    'help': invalidCharactersForNameLabel
+                }) }}
+
+
+                {{ ps.form_group_row(cmsPageCategoryForm.friendly_url, {}, {
+                    'label': 'Friendly URL'|trans({}, 'Admin.Global'),
+                    'help': 'Only letters and the minus (-) character are allowed.'|trans({}, 'Admin.Catalog.Help')
+                }) }}
+
+                {% if cmsPageCategoryForm.shop_association is defined %}
+                    {{ ps.form_group_row(cmsPageCategoryForm.shop_association, {}, {
+                        'label': 'Shop association'|trans({}, 'Admin.Global')
+                    }) }}
+                {% endif %}
+
+                {{ ps.form_group_row(cmsPageCategoryForm.seoText, {}, {
+                    'label': 'Texto seo'|trans({}, 'Admin.Global'),
+                    'help': invalidCharactersForNameLabel
+                }) }}
+
+                {{ ps.form_group_row(cmsPageCategoryForm.showProducts, {}, {
+                    'label': 'Mostrar productos'|trans({}, 'Admin.Global'),
+                }) }}
+
+                {{ ps.form_group_row(cmsPageCategoryForm.featuredPagesIds, {}, {
+                    'label': 'Páginas destacadas'|trans({}, 'Admin.Global'),
+                    'help': 'Ids separados por coma de las páginas destacadas (solo válido para categorías de primer nivel)'
+                }) }}
+
+                {{ ps.form_group_row(cmsPageCategoryForm.relatedCategoriesTitle, {}, {
+                    'label': 'Título bloque categorías relacionadas'|trans({}, 'Admin.Global'),
+                }) }}
+
+                {{ ps.form_group_row(cmsPageCategoryForm.relatedCategoriesIds, {}, {
+                    'label': 'Categorías relacionadas'|trans({}, 'Admin.Global'),
+                    'help': 'Ids separados por coma de las categorías relacionadas con esta categoría'
+                }) }}
+
+                {{ ps.form_group_row(cmsPageCategoryForm.linkText, {}, {
+                    'label': 'Texto de enlace'|trans({}, 'Admin.Global'),
+                }) }}
+
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <div class="d-inline-flex">
+                <a href="{{ path('admin_cms_pages_index', {'id_cms_category' : cmsCategoryParentId}) }}"
+                   class="btn btn-outline-secondary">
+                    {{ 'Cancel'|trans({}, 'Admin.Actions') }}
+                </a>
+            </div>
+            <div class="d-inline-flex float-right">
+                <button class="btn btn-primary">{{ 'Save'|trans({}, 'Admin.Actions') }}</button>
+            </div>
+        </div>
+
+    </div>
+
+    {{ form_rest(cmsPageCategoryForm) }}
+    {{ form_end(cmsPageCategoryForm) }}
+{% endblock %}
